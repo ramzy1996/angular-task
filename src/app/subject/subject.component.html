@@ -1,0 +1,47 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="true" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Subject Details
+            </mat-panel-title>
+            <button mat-raised-button (click)="OpenAddForm($event)">Add Subject</button>
+        </mat-expansion-panel-header>
+        <!-- list table -->
+
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="name" #input>
+        </mat-form-field>
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="subjectId">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header style="display: none;">
+                        Id</th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row" style="display: none;"> {{row.subjectId}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="subjectName">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Subject Name </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.subjectName}}</td>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row">
+                        <button mat-icon-button color="primary" (click)="OpenEditForm($event,row)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteSubject(row.subjectId)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter {{input.value}}</td>
+                </tr>
+            </table>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

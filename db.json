@@ -1,0 +1,46 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  },
+  "students": [
+    {
+      "firstName": "Ramzy",
+      "lastName": "Ahmed",
+      "contactPerson": "Ramzy Ahmed",
+      "contatcNo": 756242803,
+      "email": "ramzyahamed96@gmail.com",
+      "dob": "1996-07-17T17:30:00.000Z",
+      "age": 26,
+      "classroom": 5,
+      "id": 2
+    }
+  ],
+  "classroom": [
+    {
+      "classroomName": "test01",
+      "id": 1
+    },
+    {
+      "classroomName": "test02",
+      "id": 2
+    },
+    {
+      "classroomName": "test03",
+      "id": 3
+    }
+  ]
+}

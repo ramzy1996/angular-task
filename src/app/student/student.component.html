@@ -1,0 +1,84 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="true" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Student Details
+            </mat-panel-title>
+            <button mat-raised-button (click)="OpenAddForm($event)">Add Student</button>
+        </mat-expansion-panel-header>
+        <!-- list table -->
+
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="name" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="studentId">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header style="display: none;">
+                        Id</th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row" style="display: none;"> {{row.studentId}}
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="fname">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> First Name </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.fname}}</td>
+                </ng-container>
+                <ng-container matColumnDef="lname">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Last Name </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.lname}}</td>
+                </ng-container>
+                <ng-container matColumnDef="contactPerson">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Contact Prson </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.contactPerson}}</td>
+                </ng-container>
+                <ng-container matColumnDef="contactNo">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Contact No</th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.contactNo}}</td>
+                </ng-container>
+                <ng-container matColumnDef="emailId">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Email </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.emailId}}</td>
+                </ng-container>
+                <ng-container matColumnDef="dateOfBirth">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header>Date of Birth </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.dateOfBirth|date}}</td>
+                </ng-container>
+                <ng-container matColumnDef="age">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Age </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.age}}</td>
+                </ng-container>
+                <ng-container matColumnDef="classRoomName">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Classroom </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.classRoomName}}</td>
+                </ng-container>
+                <ng-container matColumnDef="classroomId">
+                    <th mat-header-cell style="width: 100%; display: none;" *matHeaderCellDef mat-sort-header> Classroom
+                        ID</th>
+                    <td mat-cell style="width: 100%; display: none;" *matCellDef="let row"> {{row.classroomId}}</td>
+                </ng-container>
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Action </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row">
+                        <button mat-icon-button color="primary" (click)="OpenEditForm($event,row)">
+                            <mat-icon>edit</mat-icon>
+                        </button>
+                        <button mat-icon-button color="warn" (click)="deleteStudent(row.studentId)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </td>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter {{input.value}}</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>

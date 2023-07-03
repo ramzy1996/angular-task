@@ -1,0 +1,17 @@
+<div mat-dialog-title>Subject Form</div>
+<form [formGroup]="subjectForm" (ngSubmit)="onFormSubmit()">
+    <div mat-dialog-content class="pt-2">
+        <div class="container">
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Subject Name</mat-label>
+                    <input matInput type="text" placeholder="Subject Name" formControlName="subjectName">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button type="button" [mat-dialog-close]="false">Cancel</button>
+        <button mat-raised-button color="primary" type="submit">{{data?'Update':'Save'}} </button>
+    </div>
+</form>

@@ -1,0 +1,25 @@
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="true" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Student Details Reprot
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <div class="container">
+            <div class="row g-2">
+                <mat-form-field appearance="outline" class="col-md-5">
+                    <mat-label>Select Student</mat-label>
+                    <mat-select (change)="onSelectionChange($event)">
+                        <mat-option *ngFor="let val of studentReportData"
+                            [value]="val.studentId">{{val.fname}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>Classroom Name : {{classRoomName}} </div>
+            <div>Contact Person : {{contactPerson}} </div>
+            <div>Email : {{email}} </div>
+            <div>Contact No : {{contactNo}} </div>
+            <div>DOB: {{dateOfBirth}} </div>
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
