@@ -11,6 +11,6 @@ namespace webapi.IRepository
     public Task CreateStudent(StudentCreate std);
     public Task EditStudent(int id, StudentEdit std);
     public Task DeleteStudent(int id);
-    public Task<IEnumerable<StudentDetailReport>> GetStudentById(int id);
+    public Task<StudentDetailReport> GetStudentById(int id);
   }
 }

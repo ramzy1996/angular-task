@@ -1,7 +1,7 @@
 import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { NgModule } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -26,7 +26,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClassroomAddAditComponent } from './classroom/classroom-add-adit/classroom-add-adit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -54,7 +54,6 @@ import { StudentReportComponent } from './student-report/student-report.componen
         AllocateSubjectComponent,
         AllocateClassroomComponent,
         StudentReportComponent,
-
     ],
     imports: [
         BrowserModule,
@@ -79,7 +78,8 @@ import { StudentReportComponent } from './student-report/student-report.componen
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-        MatSnackBarModule
+        MatSnackBarModule,
+        FormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

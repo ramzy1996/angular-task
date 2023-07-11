@@ -9,17 +9,41 @@
             <div class="row g-2">
                 <mat-form-field appearance="outline" class="col-md-5">
                     <mat-label>Select Student</mat-label>
-                    <mat-select (change)="onSelectionChange($event)">
+                    <mat-select [(ngModel)]="selectedVal" (ngModelChange)="this.getStudentById()">
                         <mat-option *ngFor="let val of studentReportData"
                             [value]="val.studentId">{{val.fname}}</mat-option>
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div>Classroom Name : {{classRoomName}} </div>
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Classroom Name</mat-label>
+                    <input matInput readonly="" type="text" placeholder="Classroom Name" [(ngModel)]="classRoomName">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Contact No</mat-label>
+                    <input matInput readonly="" type="text" placeholder="ContactNo" [(ngModel)]="contactNo">
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline">
+                    <mat-label>Contact Person</mat-label>
+                    <input matInput readonly="" type="text" placeholder="Contact Person" [(ngModel)]="contactPerson">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>DOB</mat-label>
+                    <input matInput readonly="" type="text" placeholder="DOB" [(ngModel)]="dateOfBirth">
+                </mat-form-field>
+                <mat-form-field appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput readonly="" type="text" placeholder="Email" [(ngModel)]="email">
+                </mat-form-field>
+            </div>
+            <!-- <div>Classroom Name : {{classRoomName}} </div>
             <div>Contact Person : {{contactPerson}} </div>
             <div>Email : {{email}} </div>
             <div>Contact No : {{contactNo}} </div>
-            <div>DOB: {{dateOfBirth}} </div>
+            <div>DOB: {{dateOfBirth}} </div> -->
         </div>
     </mat-expansion-panel>
 </mat-accordion>

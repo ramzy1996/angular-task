@@ -61,12 +61,12 @@ namespace webapi.Repository
       }
     }
 
-    public async Task<IEnumerable<StudentDetailReport>> GetStudentById(int id)
+    public async Task<StudentDetailReport> GetStudentById(int id)
     {
       using (var connection = _context.CreateConnection())
       {
-        var sub = await connection.QueryAsync<StudentDetailReport>("dbo.GetStudentById", new { id = id }, commandType: System.Data.CommandType.StoredProcedure);
-        return sub.ToList();
+        var sub = await connection.QuerySingleOrDefaultAsync<StudentDetailReport>("dbo.GetStudentById", new { id = id }, commandType: System.Data.CommandType.StoredProcedure);
+        return sub;
       }
     }
 
