@@ -15,29 +15,35 @@
                     </mat-select>
                 </mat-form-field>
             </div>
-            <div class="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Classroom Name</mat-label>
-                    <input matInput readonly="" type="text" placeholder="Classroom Name" [(ngModel)]="classRoomName">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Contact No</mat-label>
-                    <input matInput readonly="" type="text" placeholder="ContactNo" [(ngModel)]="contactNo">
-                </mat-form-field>
-            </div>
-            <div class="row">
-                <mat-form-field appearance="outline">
-                    <mat-label>Contact Person</mat-label>
-                    <input matInput readonly="" type="text" placeholder="Contact Person" [(ngModel)]="contactPerson">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>DOB</mat-label>
-                    <input matInput readonly="" type="text" placeholder="DOB" [(ngModel)]="dateOfBirth">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Email</mat-label>
-                    <input matInput readonly="" type="text" placeholder="Email" [(ngModel)]="email">
-                </mat-form-field>
+            <div *ngIf="this.selectedVal!==0">
+                <div class="row g-2">
+                    <mat-form-field appearance="outline" class="col-md-5">
+                        <mat-label>Classroom Name</mat-label>
+                        <input matInput readonly="" type="text" placeholder="Classroom Name"
+                            [(ngModel)]="classRoomName">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="col-md-5">
+                        <mat-label>Contact No</mat-label>
+                        <input matInput readonly="" type="text" placeholder="ContactNo" [(ngModel)]="contactNo">
+                    </mat-form-field>
+                </div>
+                <div class="row g-2">
+                    <mat-form-field appearance="outline" class="col-md-5">
+                        <mat-label>Contact Person</mat-label>
+                        <input matInput readonly="" type="text" placeholder="Contact Person"
+                            [(ngModel)]="contactPerson">
+                    </mat-form-field>
+                    <mat-form-field appearance="outline" class="col-md-5">
+                        <mat-label>DOB</mat-label>
+                        <input matInput readonly="" type="text" placeholder="DOB" [(ngModel)]="dateOfBirth">
+                    </mat-form-field>
+                </div>
+                <div class="row g-2">
+                    <mat-form-field appearance="outline" class="col-md-5">
+                        <mat-label>Email</mat-label>
+                        <input matInput readonly="" type="text" placeholder="Email" [(ngModel)]="email">
+                    </mat-form-field>
+                </div>
             </div>
         </div>
     </mat-expansion-panel>
