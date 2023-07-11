@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { AllocateSubjectService } from './../services/allocate-subject.service';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { StudentReportService } from '../services/student-report.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
     selector: 'app-student-report',
@@ -9,29 +13,26 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 })
 export class StudentReportComponent implements OnInit {
     studentReportData: any[] = []
-    id: any
     classRoomName: any
     contactPerson: any
     email: any
     contactNo: any
     dateOfBirth: any
-    apiData = null;
     selectedVal: number;
-    // allocateStudentForm: FormGroup;
-    constructor(private _stdService: StudentReportService, private _allocateStudentForm: FormBuilder) {
-        this.selectedVal = 0
-        // this.allocateStudentForm = _allocateStudentForm.group({
-        //     studentId: '',
-        //     classRoomName: '',
-        //     contactPerson: '',
-        //     emailId: '',
-        //     contactNo: '',
-        //     dateOfBirth: ''
+    displayedColumns: string[] = [
+        'fname',
+        'subjectName'
+    ];
+    dataSource!: MatTableDataSource<any>;
 
-        // })
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort) sort!: MatSort;
+    constructor(private _stdService: StudentReportService, private _allocateStudentForm: FormBuilder, private _allocate: AllocateSubjectService) {
+        this.selectedVal = 0
     }
     ngOnInit(): void {
         this.getStudentList();
+        this.getSubjectAndTeachersList()
     }
     getStudentList() {
         this._stdService.getStudentList().subscribe({
@@ -43,30 +44,43 @@ export class StudentReportComponent implements OnInit {
             }
         })
     }
-    onSelectionChange(e: any): void {
-        console.log(e)
-        this.id = e.target.value;
-        // this.getStudentById(e.target.value)
-        console.log(this.id)
-    }
+
     getStudentById() {
         this._stdService.getStudentById(this.selectedVal).subscribe({
             next: (res: any) => {
                 console.log(res)
-                this.apiData = res
                 this.classRoomName = res.classRoomName
                 this.contactPerson = res.contactPerson
                 this.email = res.emailId
                 this.contactNo = res.contactNo
                 this.dateOfBirth = res.dateOfBirth
-                console.log(this.classRoomName)
-                console.log(res.classRoomName)
             },
             error: (err: any) => {
                 console.log(err)
             }
         })
 
+    }
+    getSubjectAndTeachersList() {
+        this._allocate.getSubjectAndTeachers().subscribe({
+            next: (res) => {
+                this.dataSource = new MatTableDataSource(res)
+                this.dataSource.sort = this.sort
+                this.dataSource.paginator = this.paginator
+            },
+            error: (err) => {
+                console.log(err)
+            }
+        })
+    }
+
+    applyFilter(event: Event) {
+        const filterValue = (event.target as HTMLInputElement).value;
+        this.dataSource.filter = filterValue.trim().toLowerCase();
+
+        if (this.dataSource.paginator) {
+            this.dataSource.paginator.firstPage();
+        }
     }
 
 }

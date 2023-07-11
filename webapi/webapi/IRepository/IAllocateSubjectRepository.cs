@@ -10,5 +10,6 @@ namespace webapi.IRepository
     public Task AllocateSubject(AllocateSubject allocate);
     public Task<IEnumerable<GetSubjectAllocation>> GetSubjectsById(int id);
     public Task DeAllocateSubject(int id);
+    public Task<IEnumerable<GetAllocateSubjectTeachers>> GetAllocateSubject();
   }
 }

@@ -41,5 +41,13 @@ namespace webapi.Repository
         return sub.ToList();
       }
     }
+    public async Task<IEnumerable<GetAllocateSubjectTeachers>> GetAllocateSubject()
+    {
+      using (var connection = _context.CreateConnection())
+      {
+        var subject = await connection.QueryAsync<GetAllocateSubjectTeachers>("dbo.GetAllocateSubjects", commandType: System.Data.CommandType.StoredProcedure);
+        return subject.ToList();
+      }
+    }
   }
 }

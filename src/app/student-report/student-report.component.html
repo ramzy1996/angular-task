@@ -39,11 +39,48 @@
                     <input matInput readonly="" type="text" placeholder="Email" [(ngModel)]="email">
                 </mat-form-field>
             </div>
-            <!-- <div>Classroom Name : {{classRoomName}} </div>
-            <div>Contact Person : {{contactPerson}} </div>
-            <div>Email : {{email}} </div>
-            <div>Contact No : {{contactNo}} </div>
-            <div>DOB: {{dateOfBirth}} </div> -->
+        </div>
+    </mat-expansion-panel>
+</mat-accordion>
+
+<!-- allocated subject and teachers -->
+
+<mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="true" hideToggle>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Teachers & Subjects Details
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <!-- list table -->
+
+        <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event)" placeholder="name" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+                <ng-container matColumnDef="subjectName">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Subject Name </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.subjectName}}</td>
+                </ng-container>
+
+                <ng-container matColumnDef="fname">
+                    <th mat-header-cell style="width: 100%;" *matHeaderCellDef mat-sort-header> Teacher Name </th>
+                    <td mat-cell style="width: 100%;" *matCellDef="let row"> {{row.fname}} {{row.lname}}</td>
+                </ng-container>
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+                <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No data matching the filter {{input.value}}</td>
+                </tr>
+            </table>
+
+            <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
         </div>
     </mat-expansion-panel>
 </mat-accordion>

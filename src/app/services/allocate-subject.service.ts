@@ -25,4 +25,7 @@ export class AllocateSubjectService {
     deAllocateSubject(id: number): Observable<any> {
         return this._http.delete(`${API_URL}/AllocateSubject/DeAllocateSubject/${id}`)
     }
+    getSubjectAndTeachers(): Observable<any> {
+        return this._http.get(`${API_URL}/AllocateSubject/GetAllocateSubject`)
+    }
 }

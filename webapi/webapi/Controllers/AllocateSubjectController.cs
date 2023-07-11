@@ -64,5 +64,21 @@ namespace webapi.Controllers
         throw;
       }
     }
+
+    [HttpGet]
+    [Route("GetAllocateSubject")]
+    public async Task<IActionResult> GetAllocateSubject()
+    {
+      try
+      {
+        var alsub = await _repository.GetAllocateSubject();
+        return Ok(alsub);
+      }
+      catch (System.Exception)
+      {
+
+        throw;
+      }
+    }
   }
 }

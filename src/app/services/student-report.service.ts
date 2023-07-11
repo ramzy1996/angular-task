@@ -16,4 +16,5 @@ export class StudentReportService {
     getStudentById(id: number): Observable<any> {
         return this._http.get(`${API_URL}/Student/GetStudentById/${id}`)
     }
+
 }
