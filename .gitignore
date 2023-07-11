@@ -19,6 +19,10 @@ yarn-error.log
 *.launch
 .settings/
 *.sublime-workspace
+/.vscode
+/webapi/.vs
+/webapi/webapi/bin
+/webapi/webapi/obj
 
 # Visual Studio Code
 .vscode/*
